@@ -12,7 +12,7 @@
 	<artifactId>stocks-bot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>stocks-bot</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Ticker Operations for a Stock Bot</description>
 	<url/>
 	<licenses>
 		<license/>
