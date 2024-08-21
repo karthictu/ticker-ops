@@ -1,14 +1,11 @@
 package com.karthic.stocks_bot.services.impl;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.karthic.stocks_bot.entities.Ticker;
 import com.karthic.stocks_bot.entities.TickerId;
+import com.karthic.stocks_bot.models.PriceUpdateRequest;
 import com.karthic.stocks_bot.repositories.TickerRepository;
 import com.karthic.stocks_bot.services.TickerService;
 
@@ -44,6 +41,13 @@ public class TickerServiceImpl implements TickerService {
     @Override
     public Mono<Void> delete(TickerId tickerId) {
         return tickerRepository.deleteById(tickerId);
+    }
+
+    @Override
+    public Mono<Ticker> updatePrices(String userId, String tickerId, PriceUpdateRequest priceUpdateRequest) {
+        return save(Ticker.builder().tickerId(tickerId).tickerName(priceUpdateRequest.getTickerName()).userId(userId)
+                .buyPrice(priceUpdateRequest.getBuyPrice()).sellPrice(priceUpdateRequest.getSellPrice())
+                .stopLossPrice(priceUpdateRequest.getStopLossPrice()).build());
     }
 
 }

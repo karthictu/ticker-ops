@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(value = Include.NON_NULL)
-public class StopLossUpdateRequest {
-    private String stopLoss;
+public class PriceUpdateRequest {
+    private String tickerName;
+    private Double buyPrice;
+    private Double sellPrice;
+    private Double stopLossPrice;
 }

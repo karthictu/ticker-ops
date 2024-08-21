@@ -2,6 +2,7 @@ package com.karthic.stocks_bot.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.karthic.stocks_bot.constants.CommonConstants;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "tickers")
+@Table(name = CommonConstants.TICKERS)
 @IdClass(TickerId.class)
 @JsonInclude(value = Include.NON_NULL)
 public class Ticker {
@@ -26,8 +27,11 @@ public class Ticker {
     @Id
     private String tickerId;
     private String tickerName;
-    private String buyPrice;
-    private String sellForProfitMargin;
-    private String stopLoss;
+    private Double buyPrice;
+    private Double sellPrice;
+    private Double stopLossPrice;
+    // private Double buyForMargin;
+    // private Double sellForMargin;
+    // private Double stopLossMargin;
 
 }

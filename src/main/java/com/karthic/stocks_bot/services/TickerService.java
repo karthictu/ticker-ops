@@ -1,10 +1,8 @@
 package com.karthic.stocks_bot.services;
 
-import java.util.Optional;
-import java.util.Set;
-
 import com.karthic.stocks_bot.entities.Ticker;
 import com.karthic.stocks_bot.entities.TickerId;
+import com.karthic.stocks_bot.models.PriceUpdateRequest;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,4 +17,6 @@ public interface TickerService {
     Mono<Ticker> findById(TickerId tickerId);
 
     Mono<Void> delete(TickerId tickerId);
+
+    Mono<Ticker> updatePrices(String userId, String tickerId, PriceUpdateRequest priceUpdateRequest);
 }

@@ -12,5 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(value = Include.NON_NULL)
 public class MarginUpdateRequest {
-    private String sellForProfitMargin;
+    private String tickerName;
+    private Double buyForMargin;
+    private Double sellForMargin;
+    private Double stopLossMargin;
 }
