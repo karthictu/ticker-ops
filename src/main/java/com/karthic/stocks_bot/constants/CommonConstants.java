@@ -16,8 +16,8 @@ public class CommonConstants {
     public static final String SYMBOLS_OPEN_CURLY = "{";
     public static final String SYMBOLS_CLOSE_CURLY = "}";
 
+    public static final String ENDPOINT_API = SYMBOLS_FORWARD_SLASH + API;
     public static final String ENDPOINT_PRICES = SYMBOLS_FORWARD_SLASH + PRICES;
-    public static final String ENDPOINT_API = SYMBOLS_FORWARD_SLASH + PRICES;
     public static final String ENDPOINT_STOCKS_BOT = SYMBOLS_FORWARD_SLASH + STOCKS_BOT;
     public static final String ENDPOINT_TICKERS = SYMBOLS_FORWARD_SLASH + TICKERS;
     public static final String ENDPOINT_USER_ID = SYMBOLS_FORWARD_SLASH + SYMBOLS_OPEN_CURLY + USER_ID + SYMBOLS_CLOSE_CURLY;
