@@ -1,22 +1,20 @@
 package com.karthic.stocks_bot.services;
 
+import java.util.List;
+
 import com.karthic.stocks_bot.entities.Ticker;
-import com.karthic.stocks_bot.entities.TickerId;
 import com.karthic.stocks_bot.models.PriceUpdateRequest;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
 public interface TickerService {
-    Flux<Ticker> saveAll(Flux<Ticker> tickers);
+    Ticker save(String userId, Ticker ticker);
 
-    Mono<Ticker> save(Ticker ticker);
+    List<Ticker> findAll();
 
-    Flux<Ticker> findAll();
+    Ticker findByIdAndUserId(String tickerId, String userId);
 
-    Mono<Ticker> findById(TickerId tickerId);
+    List<Ticker> findTickersByUserId(String userId);
 
-    Mono<Void> delete(TickerId tickerId);
+    void deleteForUserId(String tickerId, String userId);
 
-    Mono<Ticker> updatePrices(String userId, String tickerId, PriceUpdateRequest priceUpdateRequest);
+    Ticker updatePrices(String userId, String tickerId, PriceUpdateRequest priceUpdateRequest);
 }

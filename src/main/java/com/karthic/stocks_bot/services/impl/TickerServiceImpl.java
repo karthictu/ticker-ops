@@ -1,16 +1,17 @@
 package com.karthic.stocks_bot.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.karthic.stocks_bot.entities.Ticker;
-import com.karthic.stocks_bot.entities.TickerId;
 import com.karthic.stocks_bot.models.PriceUpdateRequest;
 import com.karthic.stocks_bot.repositories.TickerRepository;
 import com.karthic.stocks_bot.services.TickerService;
-
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Service
 public class TickerServiceImpl implements TickerService {
@@ -19,33 +20,37 @@ public class TickerServiceImpl implements TickerService {
     private TickerRepository tickerRepository;
 
     @Override
-    public Flux<Ticker> saveAll(Flux<Ticker> tickers) {
-        return tickerRepository.saveAll(tickers);
-    }
-
-    @Override
-    public Mono<Ticker> save(Ticker ticker) {
+    public Ticker save(String userId, Ticker ticker) {
+        ticker.setUserId(userId);
         return tickerRepository.save(ticker);
     }
 
     @Override
-    public Flux<Ticker> findAll() {
-        return tickerRepository.findAll();
+    public List<Ticker> findAll() {
+        List<Ticker> results = new ArrayList<Ticker>();
+        tickerRepository.findAll().forEach(ticker -> results.add(ticker));
+        return results;
     }
 
     @Override
-    public Mono<Ticker> findById(TickerId tickerId) {
-        return tickerRepository.findById(tickerId);
+    public Ticker findByIdAndUserId(String tickerId, String userId) throws NoSuchElementException {
+        return tickerRepository.findByTickerIdAndUserId(tickerId, userId).orElseThrow();
     }
 
     @Override
-    public Mono<Void> delete(TickerId tickerId) {
-        return tickerRepository.deleteById(tickerId);
+    public List<Ticker> findTickersByUserId(String userId) {
+        return tickerRepository.findAllByUserId(userId);
     }
 
     @Override
-    public Mono<Ticker> updatePrices(String userId, String tickerId, PriceUpdateRequest priceUpdateRequest) {
-        return save(Ticker.builder().tickerId(tickerId).tickerName(priceUpdateRequest.getTickerName()).userId(userId)
+    @Transactional
+    public void deleteForUserId(String tickerId, String userId) {
+        tickerRepository.deleteByTickerIdAndUserId(tickerId, userId);
+    }
+
+    @Override
+    public Ticker updatePrices(String userId, String tickerId, PriceUpdateRequest priceUpdateRequest) {
+        return save(userId, Ticker.builder().tickerId(tickerId).tickerName(priceUpdateRequest.getTickerName())
                 .buyPrice(priceUpdateRequest.getBuyPrice()).sellPrice(priceUpdateRequest.getSellPrice())
                 .stopLossPrice(priceUpdateRequest.getStopLossPrice()).build());
     }

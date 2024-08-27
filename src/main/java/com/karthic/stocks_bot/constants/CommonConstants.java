@@ -16,11 +16,15 @@ public class CommonConstants {
     public static final String SYMBOLS_OPEN_CURLY = "{";
     public static final String SYMBOLS_CLOSE_CURLY = "}";
 
+    public static final String PROPERTY_USER_ID = SYMBOLS_OPEN_CURLY + USER_ID + SYMBOLS_CLOSE_CURLY;
+    public static final String PROPERTY_TICKER_ID = SYMBOLS_OPEN_CURLY + TICKER_ID + SYMBOLS_CLOSE_CURLY;
+
     public static final String ENDPOINT_API = SYMBOLS_FORWARD_SLASH + API;
     public static final String ENDPOINT_PRICES = SYMBOLS_FORWARD_SLASH + PRICES;
     public static final String ENDPOINT_STOCKS_BOT = SYMBOLS_FORWARD_SLASH + STOCKS_BOT;
     public static final String ENDPOINT_TICKERS = SYMBOLS_FORWARD_SLASH + TICKERS;
-    public static final String ENDPOINT_USER_ID = SYMBOLS_FORWARD_SLASH + SYMBOLS_OPEN_CURLY + USER_ID + SYMBOLS_CLOSE_CURLY;
-    public static final String ENDPOINT_TICKER_ID = SYMBOLS_FORWARD_SLASH + SYMBOLS_OPEN_CURLY + TICKER_ID + SYMBOLS_CLOSE_CURLY;
+    public static final String ENDPOINT_USER_ID = SYMBOLS_FORWARD_SLASH + PROPERTY_USER_ID;
+    public static final String ENDPOINT_TICKER_ID = SYMBOLS_FORWARD_SLASH + PROPERTY_TICKER_ID;
     public static final String API_BASE_URL = ENDPOINT_API + ENDPOINT_STOCKS_BOT + ENDPOINT_USER_ID + ENDPOINT_TICKERS;
+    public static final String ENDPOINT_UPDATE_PRICES = ENDPOINT_TICKER_ID + ENDPOINT_PRICES;
 }

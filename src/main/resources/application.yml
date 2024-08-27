@@ -1,7 +1,16 @@
 spring:
   application:
     name: stocks-bot
-  r2dbc:
-    url: r2dbc:h2:mem:///DBNAME?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password:
+  datasource:
+    url: ${db_url}
+    username: ${db_username}
+    password: ${db_password}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    
